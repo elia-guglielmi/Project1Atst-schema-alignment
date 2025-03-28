@@ -2,57 +2,47 @@ The database 'debit_card_specializing' contains the following tables:
 
 - Table name:'customers' has the following columns:
   - 'CustomerID' (integer)
-  - 'client segment' (text)
+  - 'Segment' (text)
   - 'Currency' (text)
 
 - Table name:'gasstations' has the following columns:
-  - 'Gas Station ID' (integer)
-  - 'Chain ID' (integer)
+  - 'GasStationID' (integer)
+  - 'ChainID' (integer)
   - 'Country' (text)
-  - 'chain segment' (text)
+  - 'Segment' (text)
 
 - Table name:'products' has the following columns:
-  - 'Product ID' (integer)
+  - 'ProductID' (integer)
   - 'Description' (text)
 
 - Table name:'transactions_1k' has the following columns:
-  - 'Transaction ID' (integer)
+  - 'TransactionID' (integer)
   - 'Date' (date)
   - 'Time' (text)
-  - 'Customer ID' (integer)
-  - 'Card ID' (integer)
-  - 'Gas Station ID' (integer)
-  - 'Product ID' (integer)
+  - 'CustomerID' (integer)
+  - 'CardID' (integer)
+  - 'GasStationID' (integer)
+  - 'ProductID' (integer)
   - 'Amount' (integer)
   - 'Price' (real)
 
 - Table name:'yearmonth' has the following columns:
-  - 'Customer ID' (integer)
+  - 'CustomerID' (integer)
   - 'Date' (text)
   - 'Consumption' (real)
-
-Primary keys:
-- Primary key on column 'CustomerID' in table 'customers'
-- Primary key on column 'Gas Station ID' in table 'gasstations'
-- Primary key on column 'Product ID' in table 'products'
-- Primary key on column 'Transaction ID' in table 'transactions_1k'
-- Composite primary key on columns: Customer ID, Date
-
-Foreign keys:
-- Foreign key from column 'Customer ID' in table 'yearmonth' references column 'CustomerID' in table 'customers'
 
 ================================================================================
 The database 'financial' contains the following tables:
 
 - Table name:'account' has the following columns:
-  - 'account id' (integer)
-  - 'location of branch' (integer)
+  - 'account_id' (integer)
+  - 'district_id' (integer)
   - 'frequency' (text)
   - 'date' (date)
 
 - Table name:'card' has the following columns:
-  - 'credit card id' (integer)
-  - 'disposition id' (integer)
+  - 'card_id' (integer)
+  - 'disp_id' (integer)
   - 'type' (text)
   - 'issued' (date)
 
@@ -60,31 +50,31 @@ The database 'financial' contains the following tables:
   - 'client_id' (integer)
   - 'gender' (text)
   - 'birth_date' (date)
-  - 'location of branch' (integer)
+  - 'district_id' (integer)
 
 - Table name:'disp' has the following columns:
-  - 'disposition id' (integer)
+  - 'disp_id' (integer)
   - 'client_id' (integer)
   - 'account_id' (integer)
   - 'type' (text)
 
 - Table name:'district' has the following columns:
-  - 'location of branch' (integer)
-  - 'district_name' (text)
-  - 'region' (text)
-  - 'number of inhabitants' (text)
-  - 'no. of municipalities with inhabitants < 499' (text)
-  - 'no. of municipalities with inhabitants 500-1999' (text)
-  - 'no. of municipalities with inhabitants 2000-9999' (text)
-  - 'no. of municipalities with inhabitants > 10000' (integer)
+  - 'district_id' (integer)
+  - 'A2' (text)
+  - 'A3' (text)
+  - 'A4' (text)
+  - 'A5' (text)
+  - 'A6' (text)
+  - 'A7' (text)
+  - 'A8' (integer)
   - 'A9' (integer)
-  - 'ratio of urban inhabitants' (real)
-  - 'average salary' (integer)
-  - 'unemployment rate 1995' (real)
-  - 'unemployment rate 1996' (real)
-  - 'no. of entrepreneurs per 1000 inhabitants' (integer)
-  - 'no. of committed crimes 1995' (integer)
-  - 'no. of committed crimes 1996' (integer)
+  - 'A10' (real)
+  - 'A11' (integer)
+  - 'A12' (real)
+  - 'A13' (real)
+  - 'A14' (integer)
+  - 'A15' (integer)
+  - 'A16' (integer)
 
 - Table name:'loan' has the following columns:
   - 'loan_id' (integer)
@@ -92,131 +82,111 @@ The database 'financial' contains the following tables:
   - 'date' (date)
   - 'amount' (integer)
   - 'duration' (integer)
-  - 'monthly payments' (real)
+  - 'payments' (real)
   - 'status' (text)
 
 - Table name:'order' has the following columns:
   - 'order_id' (integer)
   - 'account_id' (integer)
-  - 'bank of the recipient' (text)
-  - 'account of the recipient' (integer)
-  - 'debited amount' (real)
-  - 'characterization of the payment' (text)
+  - 'bank_to' (text)
+  - 'account_to' (integer)
+  - 'amount' (real)
+  - 'k_symbol' (text)
 
 - Table name:'trans' has the following columns:
-  - 'transaction id' (integer)
+  - 'trans_id' (integer)
   - 'account_id' (integer)
-  - 'date of transaction' (date)
-  - '+/- transaction' (text)
-  - 'mode of transaction' (text)
-  - 'amount of money' (integer)
-  - 'balance after transaction' (integer)
-  - 'characterization of the transaction' (text)
-  - 'bank of the partner' (text)
-  - 'account of the partner' (integer)
-
-Primary keys:
-- Primary key on column 'account id' in table 'account'
-- Primary key on column 'credit card id' in table 'card'
-- Primary key on column 'client_id' in table 'client'
-- Primary key on column 'disposition id' in table 'disp'
-- Primary key on column 'location of branch' in table 'district'
-- Primary key on column 'loan_id' in table 'loan'
-- Primary key on column 'order_id' in table 'order'
-- Primary key on column 'transaction id' in table 'trans'
-
-Foreign keys:
-- Foreign key from column 'location of branch' in table 'account' references column 'location of branch' in table 'district'
-- Foreign key from column 'disposition id' in table 'card' references column 'disposition id' in table 'disp'
-- Foreign key from column 'location of branch' in table 'client' references column 'location of branch' in table 'district'
-- Foreign key from column 'client_id' in table 'disp' references column 'client_id' in table 'client'
-- Foreign key from column 'account_id' in table 'disp' references column 'account id' in table 'account'
-- Foreign key from column 'account_id' in table 'loan' references column 'account id' in table 'account'
-- Foreign key from column 'account_id' in table 'order' references column 'account id' in table 'account'
-- Foreign key from column 'account_id' in table 'trans' references column 'account id' in table 'account'
+  - 'date' (date)
+  - 'type' (text)
+  - 'operation' (text)
+  - 'amount' (integer)
+  - 'balance' (integer)
+  - 'k_symbol' (text)
+  - 'bank' (text)
+  - 'account' (integer)
 
 ================================================================================
 The database 'formula_1' contains the following tables:
 
 - Table name:'circuits' has the following columns:
-  - 'circuit Id' (integer)
-  - 'circuit reference name' (text)
+  - 'circuitId' (integer)
+  - 'circuitRef' (text)
   - 'name' (text)
   - 'location' (text)
   - 'country' (text)
-  - 'latitude' (real)
-  - 'longitude' (real)
+  - 'lat' (real)
+  - 'lng' (real)
   - 'alt' (integer)
   - 'url' (text)
 
 - Table name:'constructors' has the following columns:
-  - 'constructor Id' (integer)
-  - 'Constructor Reference name' (text)
+  - 'constructorId' (integer)
+  - 'constructorRef' (text)
   - 'name' (text)
   - 'nationality' (text)
   - 'url' (text)
 
 - Table name:'drivers' has the following columns:
-  - 'driver ID' (integer)
-  - 'driver reference name' (text)
+  - 'driverId' (integer)
+  - 'driverRef' (text)
   - 'number' (integer)
   - 'code' (text)
   - 'forename' (text)
   - 'surname' (text)
-  - 'date of birth' (date)
+  - 'dob' (date)
   - 'nationality' (text)
   - 'url' (text)
 
 - Table name:'seasons' has the following columns:
-  - 'race ID' (integer)
+  - 'year' (integer)
   - 'url' (text)
 
 - Table name:'races' has the following columns:
-  - 'race ID' (integer)
+  - 'raceId' (integer)
   - 'year' (integer)
   - 'round' (integer)
-  - 'Circuit Id' (integer)
+  - 'circuitId' (integer)
   - 'name' (text)
   - 'date' (date)
   - 'time' (text)
   - 'url' (text)
 
 - Table name:'constructorResults' has the following columns:
-  - 'constructor Results Id' (integer)
-  - 'race Id' (integer)
-  - 'constructor Id' (integer)
+  - 'constructorResultsId' (integer)
+  - 'raceId' (integer)
+  - 'constructorId' (integer)
   - 'points' (real)
   - 'status' (text)
 
 - Table name:'constructorStandings' has the following columns:
-  - 'constructor Standings Id' (integer)
-  - 'race id' (integer)
-  - 'constructor id' (integer)
+  - 'constructorStandingsId' (integer)
+  - 'raceId' (integer)
+  - 'constructorId' (integer)
   - 'points' (real)
   - 'position' (integer)
-  - 'position text' (text)
+  - 'positionText' (text)
   - 'wins' (integer)
 
 - Table name:'driverStandings' has the following columns:
-  - 'driver Standings Id' (integer)
-  - 'constructor Reference name' (integer)
+  - 'driverStandingsId' (integer)
+  - 'raceId' (integer)
   - 'driverId' (integer)
   - 'points' (real)
   - 'position' (integer)
-  - 'position text' (text)
+  - 'positionText' (text)
   - 'wins' (integer)
 
 - Table name:'lapTimes' has the following columns:
-  - 'race ID' (integer)
-  - 'driver ID' (integer)
+  - 'raceId' (integer)
+  - 'driverId' (integer)
   - 'lap' (integer)
   - 'position' (integer)
   - 'time' (text)
   - 'milliseconds' (integer)
 
 - Table name:'pitStops' has the following columns:
-  - 'race ID' (integer)
-  - 'driver ID' (integer)
+  - 'raceId' (integer)
+  - 'driverId' (integer)
   - 'stop' (integer)
   - 'lap' (integer)
   - 'time' (text)
@@ -224,75 +194,39 @@ The database 'formula_1' contains the following tables:
   - 'milliseconds' (integer)
 
 - Table name:'qualifying' has the following columns:
-  - 'qualify Id' (integer)
-  - 'race Id' (integer)
-  - 'driver Id' (integer)
-  - 'constructor id' (integer)
+  - 'qualifyId' (integer)
+  - 'raceId' (integer)
+  - 'driverId' (integer)
+  - 'constructorId' (integer)
   - 'number' (integer)
   - 'position' (integer)
-  - 'qualifying 1' (text)
-  - 'qualifying 2' (text)
-  - 'qualifying 3' (text)
+  - 'q1' (text)
+  - 'q2' (text)
+  - 'q3' (text)
 
 - Table name:'status' has the following columns:
-  - 'status ID' (integer)
+  - 'statusId' (integer)
   - 'status' (text)
 
 - Table name:'results' has the following columns:
-  - 'Result ID' (integer)
-  - 'race ID' (integer)
-  - 'driver ID' (integer)
-  - 'constructor Id' (integer)
+  - 'resultId' (integer)
+  - 'raceId' (integer)
+  - 'driverId' (integer)
+  - 'constructorId' (integer)
   - 'number' (integer)
   - 'grid' (integer)
   - 'position' (integer)
-  - 'position text' (text)
-  - 'position order' (integer)
+  - 'positionText' (text)
+  - 'positionOrder' (integer)
   - 'points' (real)
   - 'laps' (integer)
   - 'time' (text)
   - 'milliseconds' (integer)
-  - 'fastest lap' (integer)
+  - 'fastestLap' (integer)
   - 'rank' (integer)
-  - 'fastest Lap Time' (text)
-  - 'fastest Lap Speed' (text)
-  - 'status Id' (integer)
-
-Primary keys:
-- Primary key on column 'circuit Id' in table 'circuits'
-- Primary key on column 'constructor Id' in table 'constructors'
-- Primary key on column 'driver ID' in table 'drivers'
-- Primary key on column 'race ID' in table 'seasons'
-- Primary key on column 'race ID' in table 'races'
-- Primary key on column 'constructor Results Id' in table 'constructorResults'
-- Primary key on column 'constructor Standings Id' in table 'constructorStandings'
-- Primary key on column 'driver Standings Id' in table 'driverStandings'
-- Composite primary key on columns: race ID, driver ID, lap
-- Composite primary key on columns: race ID, driver ID, stop
-- Primary key on column 'qualify Id' in table 'qualifying'
-- Primary key on column 'status ID' in table 'status'
-- Primary key on column 'Result ID' in table 'results'
-
-Foreign keys:
-- Foreign key from column 'Circuit Id' in table 'races' references column 'circuit Id' in table 'circuits'
-- Foreign key from column 'year' in table 'races' references column 'race ID' in table 'seasons'
-- Foreign key from column 'constructor Id' in table 'constructorResults' references column 'constructor Id' in table 'constructors'
-- Foreign key from column 'race Id' in table 'constructorResults' references column 'race ID' in table 'races'
-- Foreign key from column 'constructor id' in table 'constructorStandings' references column 'constructor Id' in table 'constructors'
-- Foreign key from column 'race id' in table 'constructorStandings' references column 'race ID' in table 'races'
-- Foreign key from column 'driverId' in table 'driverStandings' references column 'driver ID' in table 'drivers'
-- Foreign key from column 'constructor Reference name' in table 'driverStandings' references column 'race ID' in table 'races'
-- Foreign key from column 'driver ID' in table 'lapTimes' references column 'driver ID' in table 'drivers'
-- Foreign key from column 'race ID' in table 'lapTimes' references column 'race ID' in table 'races'
-- Foreign key from column 'driver ID' in table 'pitStops' references column 'driver ID' in table 'drivers'
-- Foreign key from column 'race ID' in table 'pitStops' references column 'race ID' in table 'races'
-- Foreign key from column 'constructor id' in table 'qualifying' references column 'constructor Id' in table 'constructors'
-- Foreign key from column 'driver Id' in table 'qualifying' references column 'driver ID' in table 'drivers'
-- Foreign key from column 'race Id' in table 'qualifying' references column 'race ID' in table 'races'
-- Foreign key from column 'status Id' in table 'results' references column 'status ID' in table 'status'
-- Foreign key from column 'constructor Id' in table 'results' references column 'constructor Id' in table 'constructors'
-- Foreign key from column 'driver ID' in table 'results' references column 'driver ID' in table 'drivers'
-- Foreign key from column 'race ID' in table 'results' references column 'race ID' in table 'races'
+  - 'fastestLapTime' (text)
+  - 'fastestLapSpeed' (text)
+  - 'statusId' (integer)
 
 ================================================================================
 The database 'california_schools' contains the following tables:
@@ -331,121 +265,112 @@ The database 'california_schools' contains the following tables:
 - Table name:'satscores' has the following columns:
   - 'cds' (text)
   - 'rtype' (text)
-  - 'school name' (text)
-  - 'district name' (text)
-  - 'county name' (text)
-  - 'enrollment (1st-12nd grade)' (integer)
-  - 'Number of Test Takers' (integer)
-  - 'average scores in Reading' (integer)
-  - 'average scores in Math' (integer)
-  - 'average scores in writing' (integer)
-  - 'Number of Test Takers Whose Total SAT Scores Are Greater or Equal to 1500' (integer)
+  - 'sname' (text)
+  - 'dname' (text)
+  - 'cname' (text)
+  - 'enroll12' (integer)
+  - 'NumTstTakr' (integer)
+  - 'AvgScrRead' (integer)
+  - 'AvgScrMath' (integer)
+  - 'AvgScrWrite' (integer)
+  - 'NumGE1500' (integer)
 
 - Table name:'schools' has the following columns:
   - 'CDSCode' (text)
-  - 'National Center for Educational Statistics school district identification number' (text)
-  - 'National Center for Educational Statistics school identification number' (text)
+  - 'NCESDist' (text)
+  - 'NCESSchool' (text)
   - 'StatusType' (text)
   - 'County' (text)
   - 'District' (text)
   - 'School' (text)
   - 'Street' (text)
-  - 'street address' (text)
+  - 'StreetAbr' (text)
   - 'City' (text)
   - 'Zip' (text)
   - 'State' (text)
-  - 'Mail Street' (text)
-  - 'mailing street address' (text)
-  - 'mailing city' (text)
-  - 'mailing zip' (text)
-  - 'mailing state' (text)
+  - 'MailStreet' (text)
+  - 'MailStrAbr' (text)
+  - 'MailCity' (text)
+  - 'MailZip' (text)
+  - 'MailState' (text)
   - 'Phone' (text)
-  - 'extension' (text)
+  - 'Ext' (text)
   - 'Website' (text)
   - 'OpenDate' (date)
   - 'ClosedDate' (date)
   - 'Charter' (integer)
   - 'CharterNum' (text)
   - 'FundingType' (text)
-  - 'District Ownership Code' (text)
-  - 'The District Ownership Code Type' (text)
-  - 'School Ownership Code' (text)
-  - 'School Ownership Code Type' (text)
-  - 'Education Option Code' (text)
-  - 'Educational Option Name' (text)
-  - 'Educational Instruction Level Code' (text)
-  - 'Educational Instruction Level Name' (text)
-  - 'grade span offered' (text)
-  - 'grade span served.' (text)
+  - 'DOC' (text)
+  - 'DOCType' (text)
+  - 'SOC' (text)
+  - 'SOCType' (text)
+  - 'EdOpsCode' (text)
+  - 'EdOpsName' (text)
+  - 'EILCode' (text)
+  - 'EILName' (text)
+  - 'GSoffered' (text)
+  - 'GSserved' (text)
   - 'Virtual' (text)
   - 'Magnet' (integer)
   - 'Latitude' (real)
   - 'Longitude' (real)
-  - 'administrator's first name 1' (text)
-  - 'administrator's last name 1' (text)
-  - 'administrator's email address 1' (text)
-  - 'administrator's first name 2' (text)
-  - 'administrator's last name 2' (text)
-  - 'administrator's email address 2' (text)
-  - 'administrator's first name 3' (text)
-  - 'administrator's last name 3' (text)
-  - 'administrator's email address 3' (text)
-  - 'Last Update' (date)
-
-Primary keys:
-- Primary key on column 'CDSCode' in table 'frpm'
-- Primary key on column 'cds' in table 'satscores'
-- Primary key on column 'CDSCode' in table 'schools'
-
-Foreign keys:
-- Foreign key from column 'CDSCode' in table 'frpm' references column 'CDSCode' in table 'schools'
-- Foreign key from column 'cds' in table 'satscores' references column 'CDSCode' in table 'schools'
+  - 'AdmFName1' (text)
+  - 'AdmLName1' (text)
+  - 'AdmEmail1' (text)
+  - 'AdmFName2' (text)
+  - 'AdmLName2' (text)
+  - 'AdmEmail2' (text)
+  - 'AdmFName3' (text)
+  - 'AdmLName3' (text)
+  - 'AdmEmail3' (text)
+  - 'LastUpdate' (date)
 
 ================================================================================
 The database 'card_games' contains the following tables:
 
 - Table name:'cards' has the following columns:
-  - 'unique id number identifying the cards' (integer)
+  - 'id' (integer)
   - 'artist' (text)
-  - 'ascii Name' (text)
+  - 'asciiName' (text)
   - 'availability' (text)
-  - 'border Color' (text)
-  - 'card Kingdom Foil Id' (text)
-  - 'card Kingdom Id' (text)
-  - 'color Identity' (text)
-  - 'color Indicator' (text)
+  - 'borderColor' (text)
+  - 'cardKingdomFoilId' (text)
+  - 'cardKingdomId' (text)
+  - 'colorIdentity' (text)
+  - 'colorIndicator' (text)
   - 'colors' (text)
-  - 'converted Mana Cost' (real)
-  - 'duel Deck' (text)
-  - 'rec Rank in edh' (integer)
-  - 'face Converted Mana Cost' (real)
-  - 'face Name' (text)
-  - 'flavor Name' (text)
-  - 'flavor Text' (text)
-  - 'frame Effects' (text)
-  - 'frame Version' (text)
+  - 'convertedManaCost' (real)
+  - 'duelDeck' (text)
+  - 'edhrecRank' (integer)
+  - 'faceConvertedManaCost' (real)
+  - 'faceName' (text)
+  - 'flavorName' (text)
+  - 'flavorText' (text)
+  - 'frameEffects' (text)
+  - 'frameVersion' (text)
   - 'hand' (text)
-  - 'has Alternative Deck Limit' (integer)
-  - 'has Content Warning' (integer)
-  - 'has Foil' (integer)
-  - 'has Non Foil' (integer)
-  - 'is Alternative' (integer)
-  - 'is Full Art' (integer)
-  - 'is Online Only' (integer)
-  - 'is Oversized' (integer)
-  - 'is Promotion' (integer)
-  - 'is Reprint' (integer)
-  - 'is Reserved' (integer)
-  - 'is Starter' (integer)
-  - 'is Story Spotlight' (integer)
-  - 'is Text less' (integer)
-  - 'is Time shifted' (integer)
+  - 'hasAlternativeDeckLimit' (integer)
+  - 'hasContentWarning' (integer)
+  - 'hasFoil' (integer)
+  - 'hasNonFoil' (integer)
+  - 'isAlternative' (integer)
+  - 'isFullArt' (integer)
+  - 'isOnlineOnly' (integer)
+  - 'isOversized' (integer)
+  - 'isPromo' (integer)
+  - 'isReprint' (integer)
+  - 'isReserved' (integer)
+  - 'isStarter' (integer)
+  - 'isStorySpotlight' (integer)
+  - 'isTextless' (integer)
+  - 'isTimeshifted' (integer)
   - 'keywords' (text)
   - 'layout' (text)
-  - 'leadership Skills' (text)
+  - 'leadershipSkills' (text)
   - 'life' (text)
   - 'loyalty' (text)
-  - 'mana Cost' (text)
+  - 'manaCost' (text)
   - 'mcmId' (text)
   - 'mcmMetaId' (text)
   - 'mtgArenaId' (text)
@@ -461,17 +386,17 @@ The database 'card_games' contains the following tables:
   - 'otherFaceIds' (text)
   - 'power' (text)
   - 'printings' (text)
-  - 'promo Types' (text)
-  - 'purchase Urls' (text)
+  - 'promoTypes' (text)
+  - 'purchaseUrls' (text)
   - 'rarity' (text)
   - 'scryfallId' (text)
   - 'scryfallIllustrationId' (text)
   - 'scryfallOracleId' (text)
-  - 'Set Code' (text)
+  - 'setCode' (text)
   - 'side' (text)
   - 'subtypes' (text)
-  - 'super types' (text)
-  - 'tcg player ProductId' (text)
+  - 'supertypes' (text)
+  - 'tcgplayerProductId' (text)
   - 'text' (text)
   - 'toughness' (text)
   - 'type' (text)
@@ -482,7 +407,7 @@ The database 'card_games' contains the following tables:
 
 - Table name:'foreign_data' has the following columns:
   - 'id' (integer)
-  - 'flavor Text' (text)
+  - 'flavorText' (text)
   - 'language' (text)
   - 'multiverseid' (integer)
   - 'name' (text)
@@ -498,31 +423,31 @@ The database 'card_games' contains the following tables:
 
 - Table name:'sets' has the following columns:
   - 'id' (integer)
-  - 'base Set Size' (integer)
+  - 'baseSetSize' (integer)
   - 'block' (text)
   - 'booster' (text)
   - 'code' (text)
-  - 'is Foil Only' (integer)
-  - 'is Foreign Only' (integer)
-  - 'is Non Foil Only' (integer)
-  - 'is Online Only' (integer)
-  - 'is Partial Preview' (integer)
-  - 'keyrune Code' (text)
-  - 'magic card market id' (integer)
-  - 'magic card market ID Extras' (integer)
-  - 'magic card market name' (text)
-  - 'magic the gathering online code' (text)
+  - 'isFoilOnly' (integer)
+  - 'isForeignOnly' (integer)
+  - 'isNonFoilOnly' (integer)
+  - 'isOnlineOnly' (integer)
+  - 'isPartialPreview' (integer)
+  - 'keyruneCode' (text)
+  - 'mcmId' (integer)
+  - 'mcmIdExtras' (integer)
+  - 'mcmName' (text)
+  - 'mtgoCode' (text)
   - 'name' (text)
-  - 'parent Code' (text)
-  - 'release Date' (date)
-  - 'tcg player Group Id' (integer)
-  - 'total Set Size' (integer)
+  - 'parentCode' (text)
+  - 'releaseDate' (date)
+  - 'tcgplayerGroupId' (integer)
+  - 'totalSetSize' (integer)
   - 'type' (text)
 
 - Table name:'set_translations' has the following columns:
   - 'id' (integer)
   - 'language' (text)
-  - 'set code' (text)
+  - 'setCode' (text)
   - 'translation' (text)
 
 - Table name:'rulings' has the following columns:
@@ -531,79 +456,65 @@ The database 'card_games' contains the following tables:
   - 'text' (text)
   - 'uuid' (text)
 
-Primary keys:
-- Primary key on column 'unique id number identifying the cards' in table 'cards'
-- Primary key on column 'id' in table 'foreign_data'
-- Primary key on column 'id' in table 'legalities'
-- Primary key on column 'id' in table 'sets'
-- Primary key on column 'id' in table 'set_translations'
-- Primary key on column 'id' in table 'rulings'
-
-Foreign keys:
-- Foreign key from column 'uuid' in table 'foreign_data' references column 'uuid' in table 'cards'
-- Foreign key from column 'uuid' in table 'legalities' references column 'uuid' in table 'cards'
-- Foreign key from column 'set code' in table 'set_translations' references column 'code' in table 'sets'
-- Foreign key from column 'uuid' in table 'rulings' references column 'uuid' in table 'cards'
-
 ================================================================================
 The database 'european_football_2' contains the following tables:
 
 - Table name:'Player_Attributes' has the following columns:
   - 'id' (integer)
-  - 'player federation international football association api id' (integer)
-  - 'player api id' (integer)
+  - 'player_fifa_api_id' (integer)
+  - 'player_api_id' (integer)
   - 'date' (text)
   - 'overall_rating' (integer)
   - 'potential' (integer)
-  - 'preferred foot' (text)
-  - 'attacking work rate' (text)
+  - 'preferred_foot' (text)
+  - 'attacking_work_rate' (text)
   - 'defensive_work_rate' (text)
   - 'crossing' (integer)
   - 'finishing' (integer)
-  - 'heading accuracy' (integer)
-  - 'short passing' (integer)
+  - 'heading_accuracy' (integer)
+  - 'short_passing' (integer)
   - 'volleys' (integer)
   - 'dribbling' (integer)
   - 'curve' (integer)
-  - 'free kick accuracy' (integer)
-  - 'long passing' (integer)
-  - 'ball control' (integer)
+  - 'free_kick_accuracy' (integer)
+  - 'long_passing' (integer)
+  - 'ball_control' (integer)
   - 'acceleration' (integer)
-  - 'sprint speed' (integer)
+  - 'sprint_speed' (integer)
   - 'agility' (integer)
   - 'reactions' (integer)
   - 'balance' (integer)
-  - 'shot power' (integer)
+  - 'shot_power' (integer)
   - 'jumping' (integer)
   - 'stamina' (integer)
   - 'strength' (integer)
-  - 'long shots' (integer)
+  - 'long_shots' (integer)
   - 'aggression' (integer)
   - 'interceptions' (integer)
   - 'positioning' (integer)
   - 'vision' (integer)
   - 'penalties' (integer)
   - 'marking' (integer)
-  - 'standing tackle' (integer)
-  - 'sliding tackle' (integer)
-  - 'goalkeep diving' (integer)
-  - 'goalkeep handling' (integer)
-  - 'goalkeep kicking' (integer)
-  - 'goalkeep positioning' (integer)
-  - 'goalkeep reflexes' (integer)
+  - 'standing_tackle' (integer)
+  - 'sliding_tackle' (integer)
+  - 'gk_diving' (integer)
+  - 'gk_handling' (integer)
+  - 'gk_kicking' (integer)
+  - 'gk_positioning' (integer)
+  - 'gk_reflexes' (integer)
 
 - Table name:'Player' has the following columns:
   - 'id' (integer)
-  - 'player api id' (integer)
-  - 'player name' (text)
-  - 'player federation international football association api id' (integer)
+  - 'player_api_id' (integer)
+  - 'player_name' (text)
+  - 'player_fifa_api_id' (integer)
   - 'birthday' (text)
   - 'height' (integer)
   - 'weight' (integer)
 
 - Table name:'League' has the following columns:
   - 'id' (integer)
-  - 'country id' (integer)
+  - 'country_id' (integer)
   - 'name' (text)
 
 - Table name:'Country' has the following columns:
@@ -612,50 +523,50 @@ The database 'european_football_2' contains the following tables:
 
 - Table name:'Team' has the following columns:
   - 'id' (integer)
-  - 'team api id' (integer)
-  - 'team federation international football association api id' (integer)
-  - 'team long name' (text)
-  - 'team short name' (text)
+  - 'team_api_id' (integer)
+  - 'team_fifa_api_id' (integer)
+  - 'team_long_name' (text)
+  - 'team_short_name' (text)
 
 - Table name:'Team_Attributes' has the following columns:
   - 'id' (integer)
-  - 'team federation international football association api id' (integer)
-  - 'team api id' (integer)
+  - 'team_fifa_api_id' (integer)
+  - 'team_api_id' (integer)
   - 'date' (text)
-  - 'build Up Play Speed' (integer)
-  - 'build Up Play Speed Class' (text)
-  - 'build Up Play Dribbling' (integer)
-  - 'build Up Play Dribbling Class' (text)
-  - 'build Up Play Passing' (integer)
-  - 'build Up Play Passing Class' (text)
-  - 'build Up Play Positioning Class' (text)
-  - 'chance Creation Passing' (integer)
-  - 'chance Creation Passing Class' (text)
-  - 'chance Creation Crossing' (integer)
-  - 'chance Creation Crossing Class' (text)
-  - 'chance Creation Shooting' (integer)
-  - 'chance Creation Shooting Class' (text)
-  - 'chance Creation Positioning Class' (text)
-  - 'defence Pressure' (integer)
-  - 'defence Pressure Class' (text)
-  - 'defence Aggression' (integer)
-  - 'defence Aggression Class' (text)
-  - 'defence Team Width' (integer)
-  - 'defence Team Width Class' (text)
-  - 'defence Defender Line Class' (text)
+  - 'buildUpPlaySpeed' (integer)
+  - 'buildUpPlaySpeedClass' (text)
+  - 'buildUpPlayDribbling' (integer)
+  - 'buildUpPlayDribblingClass' (text)
+  - 'buildUpPlayPassing' (integer)
+  - 'buildUpPlayPassingClass' (text)
+  - 'buildUpPlayPositioningClass' (text)
+  - 'chanceCreationPassing' (integer)
+  - 'chanceCreationPassingClass' (text)
+  - 'chanceCreationCrossing' (integer)
+  - 'chanceCreationCrossingClass' (text)
+  - 'chanceCreationShooting' (integer)
+  - 'chanceCreationShootingClass' (text)
+  - 'chanceCreationPositioningClass' (text)
+  - 'defencePressure' (integer)
+  - 'defencePressureClass' (text)
+  - 'defenceAggression' (integer)
+  - 'defenceAggressionClass' (text)
+  - 'defenceTeamWidth' (integer)
+  - 'defenceTeamWidthClass' (text)
+  - 'defenceDefenderLineClass' (text)
 
 - Table name:'Match' has the following columns:
   - 'id' (integer)
-  - 'country id' (integer)
-  - 'league id' (integer)
+  - 'country_id' (integer)
+  - 'league_id' (integer)
   - 'season' (text)
   - 'stage' (integer)
   - 'date' (text)
-  - 'match api id' (integer)
-  - 'home team api id' (integer)
-  - 'away team api id' (integer)
-  - 'home team goal' (integer)
-  - 'away team goal' (integer)
+  - 'match_api_id' (integer)
+  - 'home_team_api_id' (integer)
+  - 'away_team_api_id' (integer)
+  - 'home_team_goal' (integer)
+  - 'away_team_goal' (integer)
   - 'home_player_X1' (integer)
   - 'home_player_X2' (integer)
   - 'home_player_X3' (integer)
@@ -723,9 +634,9 @@ The database 'european_football_2' contains the following tables:
   - 'away_player_10' (integer)
   - 'away_player_11' (integer)
   - 'goal' (text)
-  - 'shot on' (text)
-  - 'shot off' (text)
-  - 'foul commit' (text)
+  - 'shoton' (text)
+  - 'shotoff' (text)
+  - 'foulcommit' (text)
   - 'card' (text)
   - 'cross' (text)
   - 'corner' (text)
@@ -761,61 +672,21 @@ The database 'european_football_2' contains the following tables:
   - 'BSD' (real)
   - 'BSA' (real)
 
-Primary keys:
-- Primary key on column 'id' in table 'Player_Attributes'
-- Primary key on column 'id' in table 'Player'
-- Primary key on column 'id' in table 'League'
-- Primary key on column 'id' in table 'Country'
-- Primary key on column 'id' in table 'Team'
-- Primary key on column 'id' in table 'Team_Attributes'
-- Primary key on column 'id' in table 'Match'
-
-Foreign keys:
-- Foreign key from column 'player api id' in table 'Player_Attributes' references column 'player api id' in table 'Player'
-- Foreign key from column 'player federation international football association api id' in table 'Player_Attributes' references column 'player federation international football association api id' in table 'Player'
-- Foreign key from column 'country id' in table 'League' references column 'id' in table 'Country'
-- Foreign key from column 'team api id' in table 'Team_Attributes' references column 'team api id' in table 'Team'
-- Foreign key from column 'team federation international football association api id' in table 'Team_Attributes' references column 'team federation international football association api id' in table 'Team'
-- Foreign key from column 'away_player_11' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_10' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_9' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_8' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_7' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_6' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_5' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_4' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_3' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_2' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away_player_1' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_11' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_10' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_9' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_8' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_7' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_6' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_5' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_4' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_3' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_2' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'home_player_1' in table 'Match' references column 'player api id' in table 'Player'
-- Foreign key from column 'away team api id' in table 'Match' references column 'team api id' in table 'Team'
-- Foreign key from column 'home team api id' in table 'Match' references column 'team api id' in table 'Team'
-
 ================================================================================
 The database 'thrombosis_prediction' contains the following tables:
 
 - Table name:'Examination' has the following columns:
   - 'ID' (integer)
   - 'Examination Date' (date)
-  - 'anti-Cardiolipin antibody (IgG)' (real)
-  - 'anti-Cardiolipin antibody (IgM)' (real)
-  - 'anti-nucleus antibody' (integer)
-  - 'pattern observed in the sheet of ANA examination' (text)
-  - 'anti-Cardiolipin antibody (IgA) concentration' (integer)
+  - 'aCL IgG' (real)
+  - 'aCL IgM' (real)
+  - 'ANA' (integer)
+  - 'ANA Pattern' (text)
+  - 'aCL IgA' (integer)
   - 'Diagnosis' (text)
-  - 'measure of degree of coagulation' (text)
-  - 'measure of degree of coagulation' (text)
-  - 'measure of degree of coagulation' (text)
+  - 'KCT' (text)
+  - 'RVVT' (text)
+  - 'LAC' (text)
   - 'Symptoms' (text)
   - 'Thrombosis' (integer)
 
@@ -831,63 +702,55 @@ The database 'thrombosis_prediction' contains the following tables:
 - Table name:'Laboratory' has the following columns:
   - 'ID' (integer)
   - 'Date' (date)
-  - 'AST glutamic oxaloacetic transaminase' (integer)
-  - 'ALT glutamic pyruvic transaminase' (integer)
-  - 'lactate dehydrogenase' (integer)
-  - 'alkaliphophatase' (integer)
-  - 'total protein' (real)
-  - 'albumin' (real)
-  - 'uric acid' (real)
-  - 'urea nitrogen' (integer)
-  - 'creatinine' (real)
-  - 'total bilirubin' (real)
-  - 'total cholesterol' (integer)
-  - 'triglyceride' (integer)
-  - 'creatinine phosphokinase' (integer)
-  - 'blood glucose' (integer)
-  - 'White blood cell' (real)
-  - 'Red blood cell' (real)
-  - 'Hemoglobin' (real)
-  - 'Hematoclit' (real)
-  - 'platelet' (integer)
-  - 'prothrombin time' (real)
-  - 'activated partial prothrombin time' (integer)
-  - 'fibrinogen' (real)
+  - 'GOT' (integer)
+  - 'GPT' (integer)
+  - 'LDH' (integer)
+  - 'ALP' (integer)
+  - 'TP' (real)
+  - 'ALB' (real)
+  - 'UA' (real)
+  - 'UN' (integer)
+  - 'CRE' (real)
+  - 'T-BIL' (real)
+  - 'T-CHO' (integer)
+  - 'TG' (integer)
+  - 'CPK' (integer)
+  - 'GLU' (integer)
+  - 'WBC' (real)
+  - 'RBC' (real)
+  - 'HGB' (real)
+  - 'HCT' (real)
+  - 'PLT' (integer)
+  - 'PT' (real)
+  - 'APTT' (integer)
+  - 'FG' (real)
   - 'PIC' (integer)
   - 'TAT' (integer)
   - 'TAT2' (integer)
-  - 'proteinuria' (text)
-  - 'Ig G' (integer)
-  - 'Ig A' (integer)
-  - 'Ig M' (integer)
-  - 'C-reactive protein' (text)
-  - 'Rhuematoid Factor' (text)
-  - 'RAHA' (text)
-  - 'complement 3' (integer)
-  - 'complement 4' (integer)
-  - 'anti-ribonuclear protein' (text)
-  - 'anti-SM' (text)
-  - 'anti-scl70' (text)
-  - 'anti-SSA' (text)
-  - 'anti-SSB' (text)
-  - 'anti-centromere' (text)
-  - 'anti-DNA' (text)
-  - 'anti-DNA' (integer)
-
-Primary keys:
-- Primary key on column 'ID' in table 'Patient'
-- Composite primary key on columns: ID, Date
-
-Foreign keys:
-- Foreign key from column 'ID' in table 'Examination' references column 'ID' in table 'Patient'
-- Foreign key from column 'ID' in table 'Laboratory' references column 'ID' in table 'Patient'
+  - 'U-PRO' (text)
+  - 'IGG' (integer)
+  - 'IGA' (integer)
+  - 'IGM' (integer)
+  - 'CRP' (text)
+  - 'RA' (text)
+  - 'RF' (text)
+  - 'C3' (integer)
+  - 'C4' (integer)
+  - 'RNP' (text)
+  - 'SM' (text)
+  - 'SC170' (text)
+  - 'SSA' (text)
+  - 'SSB' (text)
+  - 'CENTROMEA' (text)
+  - 'DNA' (text)
+  - 'DNA-II' (integer)
 
 ================================================================================
 The database 'toxicology' contains the following tables:
 
 - Table name:'atom' has the following columns:
-  - 'atom id' (text)
-  - 'molecule id' (text)
+  - 'atom_id' (text)
+  - 'molecule_id' (text)
   - 'element' (text)
 
 - Table name:'bond' has the following columns:
@@ -896,113 +759,80 @@ The database 'toxicology' contains the following tables:
   - 'bond_type' (text)
 
 - Table name:'connected' has the following columns:
-  - 'atom id' (text)
-  - 'atom id 2' (text)
-  - 'bond id' (text)
+  - 'atom_id' (text)
+  - 'atom_id2' (text)
+  - 'bond_id' (text)
 
 - Table name:'molecule' has the following columns:
-  - 'molecule id' (text)
+  - 'molecule_id' (text)
   - 'label' (text)
-
-Primary keys:
-- Primary key on column 'atom id' in table 'atom'
-- Primary key on column 'bond_id' in table 'bond'
-- Composite primary key on columns: atom id, atom id 2
-- Primary key on column 'molecule id' in table 'molecule'
-
-Foreign keys:
-- Foreign key from column 'molecule id' in table 'atom' references column 'molecule id' in table 'molecule'
-- Foreign key from column 'molecule_id' in table 'bond' references column 'molecule id' in table 'molecule'
-- Foreign key from column 'bond id' in table 'connected' references column 'bond_id' in table 'bond'
-- Foreign key from column 'atom id 2' in table 'connected' references column 'atom id' in table 'atom'
-- Foreign key from column 'atom id' in table 'connected' references column 'atom id' in table 'atom'
 
 ================================================================================
 The database 'student_club' contains the following tables:
 
 - Table name:'event' has the following columns:
-  - 'event id' (text)
-  - 'event name' (text)
-  - 'event date' (text)
+  - 'event_id' (text)
+  - 'event_name' (text)
+  - 'event_date' (text)
   - 'type' (text)
   - 'notes' (text)
   - 'location' (text)
   - 'status' (text)
 
 - Table name:'major' has the following columns:
-  - 'major id' (text)
-  - 'major name' (text)
+  - 'major_id' (text)
+  - 'major_name' (text)
   - 'department' (text)
   - 'college' (text)
 
 - Table name:'zip_code' has the following columns:
-  - 'zip code' (integer)
+  - 'zip_code' (integer)
   - 'type' (text)
   - 'city' (text)
   - 'county' (text)
   - 'state' (text)
-  - 'short state' (text)
+  - 'short_state' (text)
 
 - Table name:'attendance' has the following columns:
-  - 'link to event' (text)
-  - 'link to member' (text)
+  - 'link_to_event' (text)
+  - 'link_to_member' (text)
 
 - Table name:'budget' has the following columns:
-  - 'budget id' (text)
+  - 'budget_id' (text)
   - 'category' (text)
   - 'spent' (real)
   - 'remaining' (real)
   - 'amount' (integer)
-  - 'event status' (text)
-  - 'link to event' (text)
+  - 'event_status' (text)
+  - 'link_to_event' (text)
 
 - Table name:'expense' has the following columns:
-  - 'expense id' (text)
-  - 'expense description' (text)
-  - 'expense date' (text)
+  - 'expense_id' (text)
+  - 'expense_description' (text)
+  - 'expense_date' (text)
   - 'cost' (real)
   - 'approved' (text)
-  - 'link to member' (text)
-  - 'link to budget' (text)
+  - 'link_to_member' (text)
+  - 'link_to_budget' (text)
 
 - Table name:'income' has the following columns:
-  - 'income id' (text)
-  - 'date received' (text)
+  - 'income_id' (text)
+  - 'date_received' (text)
   - 'amount' (integer)
   - 'source' (text)
   - 'notes' (text)
-  - 'link to member' (text)
+  - 'link_to_member' (text)
 
 - Table name:'member' has the following columns:
-  - 'member id' (text)
-  - 'first name' (text)
-  - 'last name' (text)
+  - 'member_id' (text)
+  - 'first_name' (text)
+  - 'last_name' (text)
   - 'email' (text)
   - 'position' (text)
   - 't_shirt_size' (text)
   - 'phone' (text)
   - 'zip' (integer)
-  - 'link to major' (text)
-
-Primary keys:
-- Primary key on column 'event id' in table 'event'
-- Primary key on column 'major id' in table 'major'
-- Primary key on column 'zip code' in table 'zip_code'
-- Composite primary key on columns: link to event, link to member
-- Primary key on column 'budget id' in table 'budget'
-- Primary key on column 'expense id' in table 'expense'
-- Primary key on column 'income id' in table 'income'
-- Primary key on column 'member id' in table 'member'
-
-Foreign keys:
-- Foreign key from column 'link to member' in table 'attendance' references column 'member id' in table 'member'
-- Foreign key from column 'link to event' in table 'attendance' references column 'event id' in table 'event'
-- Foreign key from column 'link to event' in table 'budget' references column 'event id' in table 'event'
-- Foreign key from column 'link to member' in table 'expense' references column 'member id' in table 'member'
-- Foreign key from column 'link to budget' in table 'expense' references column 'budget id' in table 'budget'
-- Foreign key from column 'link to member' in table 'income' references column 'member id' in table 'member'
-- Foreign key from column 'zip' in table 'member' references column 'zip code' in table 'zip_code'
-- Foreign key from column 'link to major' in table 'member' references column 'major id' in table 'major'
+  - 'link_to_major' (text)
 
 ================================================================================
 The database 'superhero' contains the following tables:
@@ -1013,7 +843,7 @@ The database 'superhero' contains the following tables:
 
 - Table name:'attribute' has the following columns:
   - 'id' (integer)
-  - 'attribute name' (text)
+  - 'attribute_name' (text)
 
 - Table name:'colour' has the following columns:
   - 'id' (integer)
@@ -1033,167 +863,119 @@ The database 'superhero' contains the following tables:
 
 - Table name:'superhero' has the following columns:
   - 'id' (integer)
-  - 'superhero name' (text)
-  - 'full name' (text)
-  - 'gender id' (integer)
-  - 'eye colour id' (integer)
-  - 'hair colour id' (integer)
-  - 'skin colour id' (integer)
-  - 'race id' (integer)
-  - 'publisher id' (integer)
-  - 'alignment id' (integer)
-  - 'height cm' (integer)
-  - 'weight kg' (integer)
+  - 'superhero_name' (text)
+  - 'full_name' (text)
+  - 'gender_id' (integer)
+  - 'eye_colour_id' (integer)
+  - 'hair_colour_id' (integer)
+  - 'skin_colour_id' (integer)
+  - 'race_id' (integer)
+  - 'publisher_id' (integer)
+  - 'alignment_id' (integer)
+  - 'height_cm' (integer)
+  - 'weight_kg' (integer)
 
 - Table name:'hero_attribute' has the following columns:
-  - 'hero id' (integer)
-  - 'attribute id' (integer)
-  - 'attribute value' (integer)
+  - 'hero_id' (integer)
+  - 'attribute_id' (integer)
+  - 'attribute_value' (integer)
 
 - Table name:'superpower' has the following columns:
   - 'id' (integer)
-  - 'power name' (text)
+  - 'power_name' (text)
 
 - Table name:'hero_power' has the following columns:
-  - 'hero id' (integer)
-  - 'power id' (integer)
-
-Primary keys:
-- Primary key on column 'id' in table 'alignment'
-- Primary key on column 'id' in table 'attribute'
-- Primary key on column 'id' in table 'colour'
-- Primary key on column 'id' in table 'gender'
-- Primary key on column 'id' in table 'publisher'
-- Primary key on column 'id' in table 'race'
-- Primary key on column 'id' in table 'superhero'
-- Primary key on column 'id' in table 'superpower'
-
-Foreign keys:
-- Foreign key from column 'skin colour id' in table 'superhero' references column 'id' in table 'colour'
-- Foreign key from column 'race id' in table 'superhero' references column 'id' in table 'race'
-- Foreign key from column 'publisher id' in table 'superhero' references column 'id' in table 'publisher'
-- Foreign key from column 'hair colour id' in table 'superhero' references column 'id' in table 'colour'
-- Foreign key from column 'gender id' in table 'superhero' references column 'id' in table 'gender'
-- Foreign key from column 'eye colour id' in table 'superhero' references column 'id' in table 'colour'
-- Foreign key from column 'alignment id' in table 'superhero' references column 'id' in table 'alignment'
-- Foreign key from column 'hero id' in table 'hero_attribute' references column 'id' in table 'superhero'
-- Foreign key from column 'attribute id' in table 'hero_attribute' references column 'id' in table 'attribute'
-- Foreign key from column 'power id' in table 'hero_power' references column 'id' in table 'superpower'
-- Foreign key from column 'hero id' in table 'hero_power' references column 'id' in table 'superhero'
+  - 'hero_id' (integer)
+  - 'power_id' (integer)
 
 ================================================================================
 The database 'codebase_community' contains the following tables:
 
 - Table name:'badges' has the following columns:
   - 'Id' (integer)
-  - 'User Id' (integer)
+  - 'UserId' (integer)
   - 'Name' (text)
   - 'Date' (datetime)
 
 - Table name:'comments' has the following columns:
   - 'Id' (integer)
-  - 'Post Id' (integer)
+  - 'PostId' (integer)
   - 'Score' (integer)
   - 'Text' (text)
-  - 'Creation Date' (datetime)
-  - 'User Id' (integer)
-  - 'User Display Name' (text)
+  - 'CreationDate' (datetime)
+  - 'UserId' (integer)
+  - 'UserDisplayName' (text)
 
 - Table name:'postHistory' has the following columns:
   - 'Id' (integer)
-  - 'Post History Type Id' (integer)
-  - 'Post Id' (integer)
-  - 'Revision GUID' (text)
-  - 'Creation Date' (datetime)
-  - 'User Id' (integer)
+  - 'PostHistoryTypeId' (integer)
+  - 'PostId' (integer)
+  - 'RevisionGUID' (text)
+  - 'CreationDate' (datetime)
+  - 'UserId' (integer)
   - 'Text' (text)
   - 'Comment' (text)
-  - 'User Display Name' (text)
+  - 'UserDisplayName' (text)
 
 - Table name:'postLinks' has the following columns:
   - 'Id' (integer)
-  - 'Creation Date' (datetime)
-  - 'Post Id' (integer)
-  - 'Related Post Id' (integer)
-  - 'Link Type Id' (integer)
+  - 'CreationDate' (datetime)
+  - 'PostId' (integer)
+  - 'RelatedPostId' (integer)
+  - 'LinkTypeId' (integer)
 
 - Table name:'posts' has the following columns:
   - 'Id' (integer)
-  - 'Post Type Id' (integer)
-  - 'Accepted Answer Id' (integer)
-  - 'Creation Date' (datetime)
+  - 'PostTypeId' (integer)
+  - 'AcceptedAnswerId' (integer)
+  - 'CreaionDate' (datetime)
   - 'Score' (integer)
-  - 'View Count' (integer)
+  - 'ViewCount' (integer)
   - 'Body' (text)
-  - 'Owner User Id' (integer)
-  - 'Last Activity Date' (datetime)
+  - 'OwnerUserId' (integer)
+  - 'LasActivityDate' (datetime)
   - 'Title' (text)
   - 'Tags' (text)
-  - 'Answer Count' (integer)
-  - 'Comment Count' (integer)
-  - 'Favorite Count' (integer)
-  - 'Last Editor User Id' (integer)
-  - 'Last Edit Date' (datetime)
-  - 'Community Owned Date' (datetime)
+  - 'AnswerCount' (integer)
+  - 'CommentCount' (integer)
+  - 'FavoriteCount' (integer)
+  - 'LastEditorUserId' (integer)
+  - 'LastEditDate' (datetime)
+  - 'CommunityOwnedDate' (datetime)
   - 'ParentId' (integer)
-  - 'Closed Date' (datetime)
-  - 'Owner Display Name' (text)
-  - 'Last Editor Display Name' (text)
+  - 'ClosedDate' (datetime)
+  - 'OwnerDisplayName' (text)
+  - 'LastEditorDisplayName' (text)
 
 - Table name:'tags' has the following columns:
   - 'Id' (integer)
-  - 'Tag Name' (text)
+  - 'TagName' (text)
   - 'Count' (integer)
-  - 'Excerpt Post Id' (integer)
-  - 'Wiki Post Id' (integer)
+  - 'ExcerptPostId' (integer)
+  - 'WikiPostId' (integer)
 
 - Table name:'users' has the following columns:
   - 'Id' (integer)
   - 'Reputation' (integer)
-  - 'Creation Date' (datetime)
-  - 'Display Name' (text)
-  - 'Last Access Date' (datetime)
-  - 'Website Url' (text)
+  - 'CreationDate' (datetime)
+  - 'DisplayName' (text)
+  - 'LastAccessDate' (datetime)
+  - 'WebsiteUrl' (text)
   - 'Location' (text)
-  - 'About Me' (text)
+  - 'AboutMe' (text)
   - 'Views' (integer)
   - 'UpVotes' (integer)
   - 'DownVotes' (integer)
-  - 'Account Id' (integer)
+  - 'AccountId' (integer)
   - 'Age' (integer)
-  - 'Profile Image Url' (text)
+  - 'ProfileImageUrl' (text)
 
 - Table name:'votes' has the following columns:
   - 'Id' (integer)
-  - 'Post Id' (integer)
-  - 'Vote Type Id' (integer)
-  - 'Creation Date' (date)
-  - 'User Id' (integer)
-  - 'Bounty Amount' (integer)
-
-Primary keys:
-- Primary key on column 'Id' in table 'badges'
-- Primary key on column 'Id' in table 'comments'
-- Primary key on column 'Id' in table 'postHistory'
-- Primary key on column 'Id' in table 'postLinks'
-- Primary key on column 'Id' in table 'posts'
-- Primary key on column 'Id' in table 'tags'
-- Primary key on column 'Id' in table 'users'
-- Primary key on column 'Id' in table 'votes'
-
-Foreign keys:
-- Foreign key from column 'User Id' in table 'badges' references column 'Id' in table 'users'
-- Foreign key from column 'User Id' in table 'comments' references column 'Id' in table 'users'
-- Foreign key from column 'Post Id' in table 'comments' references column 'Id' in table 'posts'
-- Foreign key from column 'User Id' in table 'postHistory' references column 'Id' in table 'users'
-- Foreign key from column 'Post Id' in table 'postHistory' references column 'Id' in table 'posts'
-- Foreign key from column 'Related Post Id' in table 'postLinks' references column 'Id' in table 'posts'
-- Foreign key from column 'Post Id' in table 'postLinks' references column 'Id' in table 'posts'
-- Foreign key from column 'ParentId' in table 'posts' references column 'Id' in table 'posts'
-- Foreign key from column 'Owner User Id' in table 'posts' references column 'Id' in table 'users'
-- Foreign key from column 'Last Editor User Id' in table 'posts' references column 'Id' in table 'users'
-- Foreign key from column 'Excerpt Post Id' in table 'tags' references column 'Id' in table 'posts'
-- Foreign key from column 'User Id' in table 'votes' references column 'Id' in table 'users'
-- Foreign key from column 'Post Id' in table 'votes' references column 'Id' in table 'posts'
+  - 'PostId' (integer)
+  - 'VoteTypeId' (integer)
+  - 'CreationDate' (date)
+  - 'UserId' (integer)
+  - 'BountyAmount' (integer)
 
 ================================================================================
